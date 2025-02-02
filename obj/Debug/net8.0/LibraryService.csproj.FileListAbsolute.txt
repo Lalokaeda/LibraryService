@@ -354,3 +354,4 @@ c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\obj\Debug
 c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\obj\Debug\net8.0\LibraryService.pdb
 C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\obj\Debug\net8.0\LibraryService.genruntimeconfig.cache
 C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\obj\Debug\net8.0\ref\LibraryService.dll
+c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\bin\Debug\net8.0\FluentValidation.dll

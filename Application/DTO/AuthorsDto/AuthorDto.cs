@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LibraryService.Application.AuthorsDto
+namespace LibraryService.Application.DTO.AuthorsDto
 {
     public class AuthorDto
     {

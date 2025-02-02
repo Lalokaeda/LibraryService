@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LibraryService.Domain;
+using Microsoft.EntityFrameworkCore;
 
-namespace LibraryService.Domain
+namespace LibraryService.Infrastructure
 {
     public partial class LibraryDbContext : DbContext
     {
@@ -12,6 +13,8 @@ namespace LibraryService.Domain
         public DbSet<Book> Books { get; set; }
 
         public DbSet<Author> Authors { get; set; }
+
+        public DbSet<BookExemplar> BookExemplars { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

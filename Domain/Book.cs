@@ -16,12 +16,12 @@ namespace LibraryService.Domain
 
         public int PublishingYear { get; set; }
 
-        [Range(1, 100, ErrorMessage ="Номер полки должен быть в диапазоне от 1 до 100!")]
-        public int Shelf { get; set; }
+        public virtual ICollection<Author> Authors { get;} = new List<Author>();
 
-        [DataType(DataType.Date)]
-        public DateTime DateAdded { get; set; }
+        public virtual ICollection<BookExemplar> BookExemplars { get;} = new List<BookExemplar>();
 
-        public virtual ICollection<Author> Authors{ get;} = new List<Author>();
+        public int GetBooksCount(){
+            return BookExemplars.Count();
+        }
     }
 }
