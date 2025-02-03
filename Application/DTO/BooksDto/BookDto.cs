@@ -8,7 +8,7 @@ namespace LibraryService.Application.DTO.BooksDTO
         public int Id;
         public required string Title;
 
-        public required List<AuthorDto> Authors;
+        public required List<string> Authors;
 
         public int PublishingYear;
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Application.DTO.BookExemplarsDto
 {
-    public class CreateBookExemplarDro
+    public class CreateBookExemplarDto
     {
         [Required(ErrorMessage ="Книга не выбрана!")]
         [MinLength(1, ErrorMessage ="Книга не выбрана!")]

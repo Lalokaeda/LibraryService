@@ -16,7 +16,7 @@ namespace LibraryService.Domain
 
         public int PublishingYear { get; set; }
 
-        public virtual ICollection<Author> Authors { get;} = new List<Author>();
+        public virtual ICollection<Author> Authors { get; set;} = new List<Author>();
 
         public virtual ICollection<BookExemplar> BookExemplars { get;} = new List<BookExemplar>();
 

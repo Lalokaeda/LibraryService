@@ -3,13 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("DbConnectionString") ?? throw new InvalidOperationException("Connection string 'DbConnectionString' not found.");
 
-builder.Services.AddDbContext<LibraryDbContext>(options => {
-    options.UseSqlServer(connectionString);
-    options.EnableSensitiveDataLogging();
-}).AddTransient<LibraryDbContext>();
-
+builder.Services.AddInfrastructure(builder.Configuration);
 // Add services to the container.
 
 builder.Services.AddControllers();

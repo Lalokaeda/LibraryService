@@ -22,7 +22,7 @@ namespace LibraryService.Infrastructure.Repositories
 
         public async Task DeleteAsync(int Id)
         {
-             var book = await _context.Books.FindAsync(Id);
+            var book = _context.Books.FindAsync(Id);
 
             _context.Remove(book);
             await _context.SaveChangesAsync();
@@ -31,7 +31,7 @@ namespace LibraryService.Infrastructure.Repositories
 
         public async Task<IEnumerable<Book>> GetAllAsync()
         {
-            return await _context.Books.ToListAsync();
+            return await _context.Books.Include(x=>x.Authors).Include(x=>x.BookExemplars).ToListAsync();
         }
 
         public async Task<IEnumerable<Book>> GetByConditionAsync(Expression<Func<Book, bool>> expression)

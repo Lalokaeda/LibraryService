@@ -355,3 +355,8 @@ c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\obj\Debug
 C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\obj\Debug\net8.0\LibraryService.genruntimeconfig.cache
 C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\obj\Debug\net8.0\ref\LibraryService.dll
 c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\bin\Debug\net8.0\FluentValidation.dll
+c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\bin\Debug\net8.0\MediatR.dll
+c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\bin\Debug\net8.0\MediatR.Contracts.dll
+c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\bin\Debug\net8.0\MediatR.Extensions.Microsoft.DependencyInjection.dll

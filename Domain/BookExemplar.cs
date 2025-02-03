@@ -16,7 +16,7 @@ namespace LibraryService.Domain
 
         [Required(ErrorMessage = "Книга не заполнена")]
         [ForeignKey("BookId")]
-        public Book Book {get; set;}
+        public Book Book {get; set;} = null!;
 
         [Range(1, 100, ErrorMessage ="Номер полки должен быть в диапазоне от 1 до 100!")]
         public int Shelf { get; set; }
