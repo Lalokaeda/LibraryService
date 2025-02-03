@@ -20,7 +20,7 @@ namespace LibraryService.Domain
 
         public string? MiddleName { get; set; }
     
-        public virtual ICollection<Book> Books { get; set;} = new List<Book>();
+        //public virtual ICollection<Book> Books { get;} = new List<Book>();
 
         public string GetFullName(){
             return MiddleName == null? $"{Name} {LastName}" : $"{Name} {LastName} {MiddleName}";

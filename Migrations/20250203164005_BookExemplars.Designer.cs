@@ -4,6 +4,7 @@ using LibraryService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryService.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    partial class LibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250203164005_BookExemplars")]
+    partial class BookExemplars
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,19 +25,19 @@ namespace LibraryService.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AuthorBook", b =>
+            modelBuilder.Entity("Books_Authors", b =>
                 {
-                    b.Property<int>("AuthorsId")
+                    b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
-                    b.HasKey("AuthorsId", "BookId");
+                    b.HasKey("AuthorId", "BookId");
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("AuthorBook");
+                    b.ToTable("Books_Authors");
                 });
 
             modelBuilder.Entity("LibraryService.Domain.Author", b =>
@@ -108,19 +111,21 @@ namespace LibraryService.Migrations
                     b.ToTable("BookExemplars");
                 });
 
-            modelBuilder.Entity("AuthorBook", b =>
+            modelBuilder.Entity("Books_Authors", b =>
                 {
                     b.HasOne("LibraryService.Domain.Author", null)
                         .WithMany()
-                        .HasForeignKey("AuthorsId")
+                        .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK_Books_Authors_Author");
 
                     b.HasOne("LibraryService.Domain.Book", null)
                         .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK_Books_Authors_Book");
                 });
 
             modelBuilder.Entity("LibraryService.Domain.BookExemplar", b =>

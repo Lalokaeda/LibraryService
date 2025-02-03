@@ -10,9 +10,9 @@ namespace LibraryService.Application.DTO.BookExemplarsDto
     {
         [Required(ErrorMessage ="Книга не выбрана!")]
         [MinLength(1, ErrorMessage ="Книга не выбрана!")]
-        public required int BookId;
+        public required int BookId {get; set;}
 
         [Range(1, 100, ErrorMessage ="Номер полки должен быть в диапазоне от 1 до 100!")]
-        public required int Shelf;
+        public required int Shelf {get; set;}
     }
 }

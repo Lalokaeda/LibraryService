@@ -5,15 +5,15 @@ namespace LibraryService.Application.DTO.BooksDTO
 {
     public class BookDto
     {
-        public int Id;
-        public required string Title;
+        public int Id {get; set;}
+        public required string Title {get; set;}
 
-        public required List<string> Authors;
+        public required List<string> Authors {get; set;}
 
-        public int PublishingYear;
+        public int PublishingYear {get; set;}
 
-        public int BooksCount;
+        public int BooksCount {get; set;}
 
-        public List<BookExemplarDto>? bookExemplars;
+        public List<BookExemplarDto>? bookExemplars {get; set;}
     }
 }

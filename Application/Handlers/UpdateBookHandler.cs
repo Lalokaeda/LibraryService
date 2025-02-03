@@ -37,6 +37,7 @@ namespace LibraryService.Application.Handlers
             if(request.BookDto.PublishingYear.HasValue)
                 book.PublishingYear= (int)request.BookDto.PublishingYear;
 
+            await _bookRepository.UpdateAsync(book);
             return true;
         }
     }

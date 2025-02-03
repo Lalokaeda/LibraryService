@@ -5,6 +5,7 @@ using LibraryService.Domain;
 using LibraryService.Domain.Interfaces;
 using LibraryService.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 
 namespace LibraryService.Infrastructure
 {
@@ -14,16 +15,18 @@ namespace LibraryService.Infrastructure
         {
             var connectionString = configuration.GetConnectionString("DbConnectionString") ?? throw new InvalidOperationException("Connection string 'DbConnectionString' not found.");
 
-            services.AddDbContext<LibraryDbContext>(options => {
-                    options.UseSqlServer(connectionString);
-                    options.EnableSensitiveDataLogging();
+            services.AddDbContext<LibraryDbContext>(options =>
+            {
+                options.UseSqlServer(connectionString);
+                options.EnableSensitiveDataLogging();
             }).AddTransient<LibraryDbContext>();
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 
             services.AddScoped<IBaseRepository<Book>, BookRepository>();
             services.AddScoped<IBaseRepository<BookExemplar>, BookExemplarRepository>();
-            
+            services.AddScoped<IBaseRepository<Author>, AuthorRepository>();
+
             services.AddFluentValidationAutoValidation()
                 .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

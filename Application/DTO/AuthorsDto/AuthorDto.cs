@@ -7,8 +7,8 @@ namespace LibraryService.Application.DTO.AuthorsDto
 {
     public class AuthorDto
     {
-        public int Id;
+        public int Id {get; set;}
 
-        public required string FullName;
+        public required string FullName {get; set;}
     }
 }

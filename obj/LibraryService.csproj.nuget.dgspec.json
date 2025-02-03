@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\LibraryService\\LibraryService.csproj": {}
+    "c:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\LibraryService\\LibraryService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\LibraryService\\LibraryService.csproj": {
+    "c:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\LibraryService\\LibraryService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\LibraryService\\LibraryService.csproj",
+        "projectUniqueName": "c:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\LibraryService\\LibraryService.csproj",
         "projectName": "LibraryService",
-        "projectPath": "C:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\LibraryService\\LibraryService.csproj",
+        "projectPath": "c:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\LibraryService\\LibraryService.csproj",
         "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\LibraryService\\obj\\",
+        "outputPath": "c:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\LibraryService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -89,6 +89,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

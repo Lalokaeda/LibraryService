@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LibraryService.Application.DTO.AuthorsDto;
 using LibraryService.Application.DTO.BookExemplarsDto;
 using LibraryService.Application.DTO.BooksDTO;
+using LibraryService.Application.Exceptions;
 using LibraryService.Application.Queries;
 using LibraryService.Domain;
 using LibraryService.Domain.Interfaces;
@@ -12,23 +12,25 @@ using MediatR;
 
 namespace LibraryService.Application.Handlers
 {
-    public class GetBooksHandler : IRequestHandler<GetBooksQuery, List<BookDto>>
+    public class GetBookByIdHandler : IRequestHandler<GetBookByIdQuery, BookDto>
     {
         private readonly IBaseRepository<Book> _bookRepository;
 
-        public GetBooksHandler(IBaseRepository<Book> bookRepository)
+        public GetBookByIdHandler(IBaseRepository<Book> bookRepository)
         {
             _bookRepository=bookRepository;
         }
-
-        public async Task<List<BookDto>> Handle(GetBooksQuery request, CancellationToken cancellationToken)
+        public async Task<BookDto> Handle(GetBookByIdQuery request, CancellationToken cancellationToken)
         {
-            var books = await _bookRepository.GetAllAsync();
+            var book = await _bookRepository.GetByIdAsync(request.Id);
+            if (book==null)
+            {
+                throw new NotFoundException($"Книга {request.Id} не найдена");
+            }
 
-            return books.Select(book=> new BookDto{
-                Id=book.Id,
-                Title = book.Title,
-                Authors = book.Authors.Select(author => author.GetFullName()).ToList(),
+            return new BookDto{
+                Title=book.Title,
+                Authors=book.Authors.Select(author => author.GetFullName()).ToList(),
                 BooksCount = book.GetBooksCount(),
                 bookExemplars=book.BookExemplars.Select(exemplar=> new BookExemplarDto{
                     Id = exemplar.Id,
@@ -36,7 +38,7 @@ namespace LibraryService.Application.Handlers
                     DateAdded = exemplar.DateAdded
                     }).ToList(),
                 PublishingYear=book.PublishingYear
-                }).ToList();
-            }
+            };
         }
     }
+}

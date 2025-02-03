@@ -14,17 +14,20 @@ namespace LibraryService.Application.Handlers
     public class CreateBookHandler : IRequestHandler<CreateBookCommand, int>
     {
         private readonly IBaseRepository<Book> _bookRepository;
+        private readonly IBaseRepository<Author> _authorRepository;
 
-        public CreateBookHandler(IBaseRepository<Book> bookRepository)
+        public CreateBookHandler(IBaseRepository<Book> bookRepository, IBaseRepository<Author> authorRepository)
         {
             _bookRepository=bookRepository;
+            _authorRepository=authorRepository;
         }
 
         public async Task<int> Handle(CreateBookCommand request, CancellationToken cancellationToken)
         {
+            var authors = await _authorRepository.GetByConditionAsync(x=> request.BookDto.AuthorsId.Contains(x.Id));
             var book = new Book{
                 Title=request.BookDto.Title.Trim(),
-                Authors = request.BookDto.AuthorsId.Select(id=> new Author{Id=id}).ToList(),
+                Authors = authors.ToList(),
                 PublishingYear = request.BookDto.PublishingYear
             };
             await _bookRepository.AddAsync(book);

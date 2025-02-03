@@ -10,13 +10,13 @@ namespace LibraryService.Application.DTO.BooksDTO
     {
         [StringLength (200, MinimumLength =2, ErrorMessage="минимальная длина 2 символа, максимальная - 200!")]
         [Required(ErrorMessage = "Наименование не заполнено!!")]
-        public required string Title;
+        public required string Title {get; set;}
 
         [Required(ErrorMessage ="Автор не выбран!")]
         [MinLength(1, ErrorMessage ="Автор не выбран!")]
-        public required List<int> AuthorsId;
+        public required List<int> AuthorsId {get; set;}
 
-        public int PublishingYear;
+        public int PublishingYear {get; set;}
 
     }
 }

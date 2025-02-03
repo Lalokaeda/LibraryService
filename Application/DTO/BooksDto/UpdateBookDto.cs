@@ -9,12 +9,12 @@ namespace LibraryService.Application.DTO.BooksDTO
     public class UpdateBookDto
     {
         [StringLength (200, MinimumLength =2, ErrorMessage="минимальная длина 2 символа, максимальная - 200!")]
-        public string? Title;
+        public string? Title {get; set;}
 
         [MinLength(1, ErrorMessage ="Автор не выбран!")]
-        public List<int>? AuthorsId;
+        public List<int>? AuthorsId {get; set;}
 
-        public int? PublishingYear;
+        public int? PublishingYear {get; set;}
 
     }
 }
