@@ -39,8 +39,7 @@ namespace LibraryService.Infrastructure.Repositories
 
         public async Task<Author?> GetByIdAsync(int Id)
         {
-            return await _context.Authors
-                                        .FirstOrDefaultAsync(x => x.Id==Id);
+            return await _context.Authors.FirstOrDefaultAsync(x => x.Id==Id);
         }
 
         public Task<IEnumerable<Author>> GetSortedAsync(Expression<Func<Author, object>> sortExpression, bool descending = false)

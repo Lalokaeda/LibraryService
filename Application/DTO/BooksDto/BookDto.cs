@@ -14,6 +14,6 @@ namespace LibraryService.Application.DTO.BooksDTO
 
         public int BooksCount {get; set;}
 
-        public List<BookExemplarDto>? bookExemplars {get; set;}
+        public List<BookExemplarForBookDto>? bookExemplars {get; set;}
     }
 }

@@ -23,18 +23,24 @@ namespace LibraryService.Application.Handlers
 
         public async Task<List<BookDto>> Handle(GetBooksQuery request, CancellationToken cancellationToken)
         {
-            var books = await _bookRepository.GetAllAsync();
-
+            IEnumerable<Book> books;
+            if (!string.IsNullOrEmpty(request.SearchQuery))
+            {
+                books = await _bookRepository.GetByConditionAsync(x=>x.Authors.Any(a=>a.LastName.Contains(request.SearchQuery)
+                                                                    ||a.Name.Contains(request.SearchQuery)
+                                                                    ||a.MiddleName.Contains(request.SearchQuery))
+                                                                ||x.Title.Contains(request.SearchQuery)
+                                                                ||x.PublishingYear.ToString().Contains(request.SearchQuery));
+            } else
+            {
+                books = await _bookRepository.GetAllAsync();
+            }
+                
             return books.Select(book=> new BookDto{
                 Id=book.Id,
                 Title = book.Title,
                 Authors = book.Authors.Select(author => author.GetFullName()).ToList(),
                 BooksCount = book.GetBooksCount(),
-                bookExemplars=book.BookExemplars.Select(exemplar=> new BookExemplarDto{
-                    Id = exemplar.Id,
-                    Shelf = exemplar.Shelf,
-                    DateAdded = exemplar.DateAdded
-                    }).ToList(),
                 PublishingYear=book.PublishingYear
                 }).ToList();
             }

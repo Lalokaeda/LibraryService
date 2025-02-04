@@ -5,6 +5,10 @@ namespace LibraryService.Application.Queries
 {
     public class GetBooksQuery : IRequest<List<BookDto>>
     {
-        
+        public string? SearchQuery {get; set;}
+        public GetBooksQuery(string? searchQuery=null)
+        {
+            SearchQuery=searchQuery;
+        }
     }
 }

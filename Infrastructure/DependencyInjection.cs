@@ -22,13 +22,12 @@ namespace LibraryService.Infrastructure
             }).AddTransient<LibraryDbContext>();
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+            services.AddFluentValidationAutoValidation()
+                .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             services.AddScoped<IBaseRepository<Book>, BookRepository>();
             services.AddScoped<IBaseRepository<BookExemplar>, BookExemplarRepository>();
             services.AddScoped<IBaseRepository<Author>, AuthorRepository>();
-
-            services.AddFluentValidationAutoValidation()
-                .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             return services;
         }

@@ -38,7 +38,7 @@ namespace LibraryService.Application.Handlers
                 {
                     throw new NotFoundException($"Книга {request.ExemplarDto.BookId} не найдена");
                 }
-                exemplar.Book=book;
+                exemplar.BookId=(int)request.ExemplarDto.BookId;
             }
 
             if (request.ExemplarDto.Shelf.HasValue)

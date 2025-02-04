@@ -32,7 +32,7 @@ namespace LibraryService.Application.Handlers
                 Title=book.Title,
                 Authors=book.Authors.Select(author => author.GetFullName()).ToList(),
                 BooksCount = book.GetBooksCount(),
-                bookExemplars=book.BookExemplars.Select(exemplar=> new BookExemplarDto{
+                bookExemplars=book.BookExemplars.Select(exemplar=> new BookExemplarForBookDto{
                     Id = exemplar.Id,
                     Shelf = exemplar.Shelf,
                     DateAdded = exemplar.DateAdded

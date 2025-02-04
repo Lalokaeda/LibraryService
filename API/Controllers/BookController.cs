@@ -19,8 +19,9 @@ namespace LibraryService.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<BookDto>>> GetBooks([FromQuery] GetBooksQuery query)
+        public async Task<ActionResult<List<BookDto>>> GetBooks([FromQuery] string? searchQuery)
         {
+            var query = new GetBooksQuery(searchQuery);
             var books = await _mediator.Send(query);
             return Ok(books);
         }

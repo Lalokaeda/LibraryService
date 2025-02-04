@@ -29,8 +29,9 @@ namespace LibraryService.Application.Handlers
                 throw new NotFoundException($"Книга {request.ExemplarDto.BookId} не найдена");
             }
 
+            
             var bookExemplar = new BookExemplar{
-                Book = book,
+                BookId = request.ExemplarDto.BookId,
                 Shelf = request.ExemplarDto.Shelf,
                 DateAdded = DateTime.Now.Date
             };

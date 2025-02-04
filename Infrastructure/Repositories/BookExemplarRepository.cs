@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -20,7 +20,7 @@ namespace LibraryService.Infrastructure.Repositories
 
         public async Task AddAsync(BookExemplar bookExemplar)
         {
-            _context.Add(bookExemplar);
+            _context.BookExemplars.Add(bookExemplar);
             await _context.SaveChangesAsync();
         }
 
@@ -48,7 +48,7 @@ namespace LibraryService.Infrastructure.Repositories
 
         public async Task<IEnumerable<BookExemplar>> GetSortedAsync(Expression<Func<BookExemplar, object>> sortExpression, bool descending = false)
         {
-            var query = _context.BookExemplars.Include(x=>x.Book).AsQueryable();
+            var query = _context.BookExemplars.Include(x=>x.Book).ThenInclude(x=>x.Authors).AsQueryable();
 
             if (descending)
                 query=query.OrderByDescending(sortExpression);

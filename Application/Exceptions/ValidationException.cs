@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Application.Exceptions
 {
-    public class NotFoundException : AppException
+    public class ValidationException : AppException
     {
-        public NotFoundException(string? message) : base(message, StatusCodes.Status404NotFound)
+        public ValidationException(string? message) : base(message, StatusCodes.Status400BadRequest)
         {
         }
     }

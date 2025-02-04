@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Application.Exceptions
 {
-    public class NotFoundException : AppException
+    public class DataBaseException : AppException
     {
-        public NotFoundException(string? message) : base(message, StatusCodes.Status404NotFound)
+        public DataBaseException(string? message) : base(message, StatusCodes.Status500InternalServerError)
         {
         }
     }
