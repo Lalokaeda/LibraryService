@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using LibraryService.Domain;
 using LibraryService.Domain.Interfaces;
+using LibraryService.Application.Exceptions;
 
 namespace LibraryService.Infrastructure.Repositories
 {
@@ -15,52 +16,109 @@ namespace LibraryService.Infrastructure.Repositories
 
         public BookExemplarRepository(LibraryDbContext libraryDbContext)
         {
-            _context=libraryDbContext;
+            _context = libraryDbContext;
         }
 
         public async Task AddAsync(BookExemplar bookExemplar)
         {
-            _context.BookExemplars.Add(bookExemplar);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.BookExemplars.Add(bookExemplar);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[BookExemplarRepository.AddAsync]: " + e.Message);
+                throw new DataBaseException("Ошибка при добавлении экземпляра книги!");
+            }
         }
 
         public async Task DeleteAsync(int Id)
         {
-            var bookExemplar = _context.BookExemplars.FindAsync(Id);
-            _context.Remove(bookExemplar);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var bookExemplar = _context.BookExemplars.FindAsync(Id);
+                _context.Remove(bookExemplar);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[BookExemplarRepository.DeleteAsync]: " + e.Message);
+                throw new DataBaseException("Ошибка при удалении экземпляра книги!");
+            }
         }
 
         public async Task<IEnumerable<BookExemplar>> GetAllAsync()
         {
-           return await _context.BookExemplars.Include(x=>x.Book).ToListAsync();
+            try
+            {
+                return await _context.BookExemplars.Include(x => x.Book).ToListAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[BookExemplarRepository.GetAll]: " + e.Message);
+                throw new DataBaseException("Ошибка при получении списка экземпляров книги!");
+            }
         }
 
         public async Task<IEnumerable<BookExemplar>> GetByConditionAsync(Expression<Func<BookExemplar, bool>> expression)
         {
-           return await _context.BookExemplars.Include(x=>x.Book).Where(expression).ToListAsync();
+            try
+            {
+                return await _context.BookExemplars.Include(x => x.Book).Where(expression).ToListAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[BookExemplarRepository.GetByConditionAsync]: " + e.Message);
+                throw new DataBaseException("Ошибка при получении списка экземпляров книги!");
+            }
         }
 
         public async Task<BookExemplar?> GetByIdAsync(int Id)
         {
-           return await  _context.BookExemplars.Include(x=>x.Book).FirstOrDefaultAsync();
+            try
+            {
+                return await _context.BookExemplars.Include(x => x.Book).ThenInclude(x => x.Authors).FirstOrDefaultAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[BookExemplarRepository.GetByIdAsync]: " + e.Message);
+                throw new DataBaseException("Ошибка при получении экземпляра книги!");
+            }
         }
 
         public async Task<IEnumerable<BookExemplar>> GetSortedAsync(Expression<Func<BookExemplar, object>> sortExpression, bool descending = false)
         {
-            var query = _context.BookExemplars.Include(x=>x.Book).ThenInclude(x=>x.Authors).AsQueryable();
+            try
+            {
+                var query = _context.BookExemplars.Include(x => x.Book).ThenInclude(x => x.Authors).AsQueryable();
 
-            if (descending)
-                query=query.OrderByDescending(sortExpression);
-            else
-                query=query.OrderBy(sortExpression);
-            return await query.ToListAsync();
+                if (descending)
+                    query = query.OrderByDescending(sortExpression);
+                else
+                    query = query.OrderBy(sortExpression);
+                return await query.ToListAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[BookExemplarRepository.GetSortedAsync]: " + e.Message);
+                throw new DataBaseException("Ошибка при получении списка экземпляров книги!");
+            }
         }
 
         public async Task UpdateAsync(BookExemplar bookExemplar)
         {
-            _context.Update(bookExemplar);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Update(bookExemplar);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[BookExemplarRepository.UpdateAsync]: " + e.Message);
+                throw new DataBaseException("Ошибка при обновлении экземпляра книги!");
+            }
+
         }
     }
 }

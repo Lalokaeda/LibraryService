@@ -29,6 +29,13 @@ namespace LibraryService.Infrastructure
             services.AddScoped<IBaseRepository<BookExemplar>, BookExemplarRepository>();
             services.AddScoped<IBaseRepository<Author>, AuthorRepository>();
 
+            services.AddSwaggerGen(c =>
+            {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+
             return services;
         }
     }

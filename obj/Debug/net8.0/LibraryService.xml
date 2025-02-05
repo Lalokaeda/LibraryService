@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LibraryService</name>
+    </assembly>
+    <members>
+        <member name="M:LibraryService.API.Controllers.BookController.GetBooks(System.String)">
+            <summary>
+            Получить список всех книг
+            </summary>
+            <param name ="searchQuery">Поиск по автору, названию, году публикации</param>
+            <returns>Список книг</returns>
+        </member>
+        <member name="M:LibraryService.API.Controllers.BookController.GetBookById(System.Int32)">
+            <summary>
+            Получить книгу по ID
+            </summary>
+            <param name ="id">ID книги</param>
+            <returns>Данные книги</returns>
+        </member>
+        <member name="M:LibraryService.API.Controllers.BookController.CreateBook(LibraryService.Application.Commands.CreateBookCommand)">
+            <summary>
+            Создать книгу
+            </summary>
+            <param name ="command">Данные для создания книги</param>
+            <returns>Id созданной книги</returns>
+        </member>
+        <member name="M:LibraryService.API.Controllers.BookController.UpdateBook(System.Int32,LibraryService.Application.Commands.UpdateBookCommand)">
+            <summary>
+            Обновить книгу
+            </summary>
+            <param name ="id">ID книги</param>
+            <param name ="command">Данные для обновления книги</param>
+            <returns>Результат</returns>
+        </member>
+        <member name="M:LibraryService.API.Controllers.BookController.DeleteBook(System.Int32)">
+            <summary>
+            Удалить книгу
+            </summary>
+            <param name ="id">ID книги</param>
+            <returns>Результат</returns>
+        </member>
+        <member name="M:LibraryService.API.Controllers.BookExemplarController.CreateBookExemplar(LibraryService.Application.Commands.CreateBookExemplarCommand)">
+            <summary>
+            Создать экземпляр книги
+            </summary>
+            <param name ="command">Данные для создания экземпляра книги</param>
+            <returns>Id созданного экземпляра книги</returns>
+        </member>
+        <member name="M:LibraryService.API.Controllers.BookExemplarController.UpdateBookExemplar(System.Int32,LibraryService.Application.Commands.UpdateBookExemplarCommand)">
+            <summary>
+            Обновить экземпляр книги
+            </summary>
+            <param name ="id">ID экземпляра книги</param>
+            <param name ="command">Данные для обновления экземпляра книги</param>
+            <returns>Результат</returns>
+        </member>
+        <member name="M:LibraryService.API.Controllers.BookExemplarController.DeleteBookExemplar(System.Int32)">
+            <summary>
+            Удалить экземпляр книги
+            </summary>
+            <param name ="id">ID экземпляра книги</param>
+            <returns>Результат</returns>
+        </member>
+        <member name="M:LibraryService.API.Controllers.BookExemplarController.GetSortedBookExemplars(System.String,System.Boolean)">
+            <summary>
+            Получить список всех экземпляров книг с сортировкой
+            </summary>
+            <param name ="sortBy">Условие для сортировки. По умолчанию "Shelf". Возможные варианты: "Shelf" (полка), "DateAdded" (дата добавления)</param>
+            <param name ="descending">Порядк сортировки: true - по убыванию, false - по возрастанию. По умолчанию false</param>
+            <returns>Отсортированный список экземпляров книг</returns>
+        </member>
+        <member name="M:LibraryService.API.Controllers.BookExemplarController.GetBookExemplarById(System.Int32)">
+            <summary>
+            Получить экземпляр книги по ID
+            </summary>
+            <param name ="id">ID экземпляра книги</param>
+            <returns>Данные экземпляра книги</returns>
+        </member>
+        <member name="T:LibraryService.Migrations.CreateTables">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.CreateTables.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.CreateTables.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.CreateTables.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:LibraryService.Migrations.RenameColumnInBooks">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.RenameColumnInBooks.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.RenameColumnInBooks.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.RenameColumnInBooks.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:LibraryService.Migrations.BookExemplars">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.BookExemplars.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.BookExemplars.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.BookExemplars.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:LibraryService.Migrations.fixManyToMany">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.fixManyToMany.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.fixManyToMany.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.fixManyToMany.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:LibraryService.Migrations.fixOneToMany">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.fixOneToMany.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.fixOneToMany.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LibraryService.Migrations.fixOneToMany.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

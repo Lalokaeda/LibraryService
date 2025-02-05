@@ -361,3 +361,5 @@ c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\bin\Debug
 c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\bin\Debug\net8.0\MediatR.Contracts.dll
 c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\bin\Debug\net8.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\bin\Debug\net8.0\Newtonsoft.Json.dll
+c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\bin\Debug\net8.0\LibraryService.xml
+c:\Users\Acer\Downloads\Telegram Desktop\LibraryService\LibraryService\obj\Debug\net8.0\LibraryService.xml
