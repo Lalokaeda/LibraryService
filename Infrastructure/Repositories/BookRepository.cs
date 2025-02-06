@@ -38,7 +38,7 @@ namespace LibraryService.Infrastructure.Repositories
         {
             try
             {
-                var book = _context.Books.FindAsync(Id);
+                var book = await _context.Books.FindAsync(Id);
 
                 _context.Remove(book);
                 await _context.SaveChangesAsync();

@@ -37,8 +37,8 @@ namespace LibraryService.Infrastructure.Repositories
         {
             try
             {
-                var bookExemplar = _context.BookExemplars.FindAsync(Id);
-                _context.Remove(bookExemplar);
+                var bookExemplar = await _context.BookExemplars.FindAsync(Id);
+                _context.BookExemplars.Remove(bookExemplar);
                 await _context.SaveChangesAsync();
             }
             catch (Exception e)
@@ -78,7 +78,7 @@ namespace LibraryService.Infrastructure.Repositories
         {
             try
             {
-                return await _context.BookExemplars.Include(x => x.Book).ThenInclude(x => x.Authors).FirstOrDefaultAsync();
+                return await _context.BookExemplars.Where(x=>x.Id==Id).Include(x => x.Book).ThenInclude(x => x.Authors).FirstOrDefaultAsync();
             }
             catch (Exception e)
             {

@@ -44,6 +44,7 @@ namespace LibraryService.Application.Handlers
             if (request.ExemplarDto.Shelf.HasValue)
                 exemplar.Shelf= (int)request.ExemplarDto.Shelf;
 
+            await _bookExemplarRepository.UpdateAsync(exemplar);
             return true;
         }
     }

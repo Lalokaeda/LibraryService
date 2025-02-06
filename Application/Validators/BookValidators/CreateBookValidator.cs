@@ -16,6 +16,9 @@ namespace LibraryService.Application.Validators.BookValidators
                 .Must(y => y > 1400).WithMessage("Год издания должен быть больше 1400")
                 .GreaterThan(1400).WithMessage("Год издания должен быть больше 1400")
                 .LessThanOrEqualTo(DateTime.UtcNow.Year).WithMessage($"Год издания не может быть больше {DateTime.UtcNow.Year}");
+
+            RuleForEach(x => x.BookDto.AuthorsId)
+                    .NotEqual(0).WithMessage("Id автора не может быть 0");
         }
     }
 }
