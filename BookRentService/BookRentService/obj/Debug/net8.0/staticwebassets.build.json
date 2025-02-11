@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "mbC3yEk5u5II8y7L6sPzhxuphMbijDZeVXwGKrsx+Fs=",
+  "Source": "BookRentService",
+  "BasePath": "_content/BookRentService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
