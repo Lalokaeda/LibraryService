@@ -15,10 +15,10 @@ namespace BookRentService.Infrastructure
 
         }
 
-        DbSet<Renter> Renters {get; set;}
-        DbSet<RentStatus> RentStatuses {get; set;}
-        DbSet<BookRent> BookRents {get; set;}
-        DbSet<BookExemplarRent> BookExemplarRents {get; set;}
+        public DbSet<Renter> Renters {get; set;}
+        public DbSet<RentStatus> RentStatuses {get; set;}
+        public DbSet<BookRent> BookRents {get; set;}
+        public DbSet<BookExemplarRent> BookExemplarRents {get; set;}
 
          protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
