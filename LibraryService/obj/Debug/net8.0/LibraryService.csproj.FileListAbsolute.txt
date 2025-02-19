@@ -549,3 +549,6 @@ C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\LibraryS
 C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\LibraryService\obj\Debug\net8.0\LibraryService.pdb
 C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\LibraryService\obj\Debug\net8.0\LibraryService.genruntimeconfig.cache
 C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\LibraryService\obj\Debug\net8.0\ref\LibraryService.dll
+C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\LibraryService\bin\Debug\net8.0\RabbitMQ.Client.dll
+C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\LibraryService\bin\Debug\net8.0\EventBus.dll
+C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\LibraryService\bin\Debug\net8.0\EventBus.pdb

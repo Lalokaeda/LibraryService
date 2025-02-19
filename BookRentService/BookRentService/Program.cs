@@ -1,8 +1,11 @@
 using BookRentService.Infrastructure;
+using BookRentService.Infrastructure.Messaging.Consumers;
+using EventBus.Abstractions;
+using EventBus.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddInfrastructure(builder.Configuration);
+await builder.Services.AddInfrastructureAsync(builder.Configuration);
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -24,5 +27,15 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+var eventBusInstance = app.Services.GetRequiredService<IEventBus>();
+var consumer = app.Services.GetRequiredService<BookDeletedEventConsumer>();
+
+await eventBusInstance.SubscribeAsync<BookExemplarDeletedEvent>(
+    consumerTag: "book_rent_service",
+    queueName: "book_rent_queue",
+    handler: consumer.Handle,
+    cancellationToken: new CancellationToken()
+);
 
 app.Run();

@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using EventBus.Abstractions;
+using EventBus.Events;
 using LibraryService.Application.Commands;
 using LibraryService.Application.Exceptions;
 using LibraryService.Domain;
@@ -13,10 +11,12 @@ namespace LibraryService.Application.Handlers
     public class DeleteBookHandler : IRequestHandler<DeleteBookCommand, bool>
     {
         private readonly IBaseRepository<Book> _bookRepository;
+        private readonly IEventBus _eventBus;
 
-        public DeleteBookHandler(IBaseRepository<Book> bookRepository)
+        public DeleteBookHandler(IBaseRepository<Book> bookRepository, IEventBus eventBus)
         {
             _bookRepository=bookRepository;
+            _eventBus=eventBus;
         }
 
         public async Task<bool> Handle(DeleteBookCommand request, CancellationToken cancellationToken)
@@ -29,6 +29,8 @@ namespace LibraryService.Application.Handlers
             }
 
             await _bookRepository.DeleteAsync(book.Id);
+            var integrationEvent = new BookExemplarDeletedEvent(request.Id);
+            await _eventBus.PublishAsync(integrationEvent);
             return true;
         }
     }

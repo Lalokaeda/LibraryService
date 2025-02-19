@@ -30,5 +30,9 @@ namespace BookRentService.Domain.Entities
         public Renter Renter {get; set;} = null!;
         public RentStatus RentStatus {get; set;} = null!;
         public ICollection<BookExemplarRent> BookExemplarRents {get; set;} = null!;
+
+        public int GetBooksCount(){
+            return BookExemplarRents.Count;
+        }
     }
 }

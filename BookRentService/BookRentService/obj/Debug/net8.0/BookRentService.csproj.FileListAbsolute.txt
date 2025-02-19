@@ -181,3 +181,7 @@ C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\BookRent
 C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\BookRentService\BookRentService\obj\Debug\net8.0\BookRentService.pdb
 C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\BookRentService\BookRentService\obj\Debug\net8.0\BookRentService.genruntimeconfig.cache
 C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\BookRentService\BookRentService\obj\Debug\net8.0\ref\BookRentService.dll
+C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\BookRentService\BookRentService\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\BookRentService\BookRentService\bin\Debug\net8.0\RabbitMQ.Client.dll
+C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\BookRentService\BookRentService\bin\Debug\net8.0\EventBus.dll
+C:\Users\Acer\Downloads\Telegram Desktop\LibraryService\BookRentService\BookRentService\BookRentService\bin\Debug\net8.0\EventBus.pdb

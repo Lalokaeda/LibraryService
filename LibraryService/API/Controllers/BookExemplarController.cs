@@ -149,5 +149,30 @@ namespace LibraryService.API.Controllers
                 return StatusCode(500, new { messge = "Неизвестная ошибка!" });
             }
         }
+
+         /// <summary>
+        /// Получить экземпляры книги по ID
+        /// </summary>
+        /// <param name ="ids">ID экземпляров книги</param>
+        /// <returns>Данные экземпляров книги</returns>
+        [HttpPost("details")]
+        public async Task<IActionResult> GetBookExemplarsById([FromBody] List<int> ids)
+        {
+            try
+            {
+                var exemplars = await _mediator.Send(new GetBookExemplarsByIdQuery(ids));
+                if (exemplars==null || exemplars.Count==0) return NotFound();
+                return Ok(exemplars);
+            }
+            catch (AppException e)
+            {
+                return StatusCode(e.StatusCode, e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[BookExemplarController.GetBookExemplarsById]: " + e.Message);
+                return StatusCode(500, new { messge = "Неизвестная ошибка!" });
+            }
+        }
     }
 }

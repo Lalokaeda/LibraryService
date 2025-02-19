@@ -65,7 +65,7 @@ namespace LibraryService.Infrastructure.Repositories
         {
             try
             {
-                return await _context.BookExemplars.Include(x => x.Book).Where(expression).ToListAsync();
+                return await _context.BookExemplars.Include(x => x.Book).ThenInclude(x=>x.Authors).Where(expression).ToListAsync();
             }
             catch (Exception e)
             {

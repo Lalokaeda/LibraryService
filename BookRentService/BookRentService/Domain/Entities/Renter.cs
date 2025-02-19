@@ -25,5 +25,15 @@ namespace BookRentService.Domain.Entities
         public string Phone {get; set;} = null!;
 
         public virtual ICollection<BookRent> BookRents {get; set;} = new List<BookRent>();
+
+        public string GetFullName()
+        {
+            return MiddleName == null? $"{Name} {LastName}" : $"{Name} {LastName} {MiddleName}";
+        }
+
+        public string GetShortName()
+        {
+            return MiddleName == null? $"{Name} {LastName.Substring(0, 1)}." : $"{Name} {LastName.Substring(0, 1)}. {MiddleName.Substring(0, 1)}";
+        }
     }
 }

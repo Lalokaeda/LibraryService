@@ -77,6 +77,13 @@
             <param name ="id">ID экземпляра книги</param>
             <returns>Данные экземпляра книги</returns>
         </member>
+        <member name="M:LibraryService.API.Controllers.BookExemplarController.GetBookExemplarsById(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Получить экземпляры книги по ID
+            </summary>
+            <param name ="ids">ID экземпляров книги</param>
+            <returns>Данные экземпляров книги</returns>
+        </member>
         <member name="T:LibraryService.Migrations.CreateTables">
             <inheritdoc />
         </member>

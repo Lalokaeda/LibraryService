@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using BookRentService.Infrastructure.Messaging.Consumers;
+using EventBus.Abstractions;
+using EventBus.RabbitMq;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +14,7 @@ namespace BookRentService.Infrastructure
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static async Task<IServiceCollection> AddInfrastructureAsync(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DbConnectionString") ?? throw new InvalidOperationException("Connection string 'DbConnectionString' not found.");
 
@@ -24,6 +27,10 @@ namespace BookRentService.Infrastructure
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
             services.AddFluentValidationAutoValidation()
                 .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+                
+            var eventBus = new EventBus.RabbitMq.EventBus("localhost", "LibraryExchange");
+                await eventBus.InitializeAsync();
+                services.AddSingleton<IEventBus>(eventBus);
 
 
 
@@ -34,6 +41,7 @@ namespace BookRentService.Infrastructure
                 c.IncludeXmlComments(xmlPath);
             });
 
+            services.AddTransient<BookDeletedEventConsumer>();
             return services;
         }
     }
