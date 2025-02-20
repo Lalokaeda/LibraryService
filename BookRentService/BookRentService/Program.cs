@@ -5,7 +5,7 @@ using EventBus.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
-await builder.Services.AddInfrastructureAsync(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration);
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -37,5 +37,17 @@ await eventBusInstance.SubscribeAsync<BookExemplarDeletedEvent>(
     handler: consumer.Handle,
     cancellationToken: new CancellationToken()
 );
+
+// using (var scope = app.Services.CreateScope()) 
+// {
+//     var consumer = scope.ServiceProvider.GetRequiredService<BookDeletedEventConsumer>();
+    
+//     await eventBusInstance.SubscribeAsync<BookExemplarDeletedEvent>(
+//         consumerTag: "book_rent_service",
+//         queueName: "book_rent_queue",
+//         handler: consumer.Handle,
+//         cancellationToken: new CancellationToken()
+//     );
+// }
 
 app.Run();

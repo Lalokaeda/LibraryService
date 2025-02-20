@@ -18,7 +18,7 @@ public class EventBus : IEventBus
     {
         _hostname = hostname;
         _exchangeName = exchangeName;
-        _factory = new ConnectionFactory() { HostName = _hostname };
+        _factory = new ConnectionFactory() { HostName = _hostname, Port = 5673 };
     }
 
     public async Task InitializeAsync()

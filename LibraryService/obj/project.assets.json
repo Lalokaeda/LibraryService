@@ -6006,11 +6006,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\BookRentService\\LibraryService\\LibraryService.csproj",
+      "projectUniqueName": "c:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\BookRentService\\LibraryService\\LibraryService.csproj",
       "projectName": "LibraryService",
-      "projectPath": "C:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\BookRentService\\LibraryService\\LibraryService.csproj",
+      "projectPath": "c:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\BookRentService\\LibraryService\\LibraryService.csproj",
       "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\BookRentService\\LibraryService\\obj\\",
+      "outputPath": "c:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\BookRentService\\LibraryService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -6032,8 +6032,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\BookRentService\\EventBus\\EventBus.csproj": {
-              "projectPath": "C:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\BookRentService\\EventBus\\EventBus.csproj"
+            "c:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\BookRentService\\EventBus\\EventBus.csproj": {
+              "projectPath": "c:\\Users\\Acer\\Downloads\\Telegram Desktop\\LibraryService\\BookRentService\\EventBus\\EventBus.csproj"
             }
           }
         }

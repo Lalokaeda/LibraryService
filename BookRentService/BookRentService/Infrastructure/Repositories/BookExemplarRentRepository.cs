@@ -50,6 +50,11 @@ namespace BookRentService.Infrastructure.Repositories
             }
         }
 
+        public Task DeleteRangeAsync(int[] Ids)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<BookExemplarRent>> GetAllAsync()
         {
             try

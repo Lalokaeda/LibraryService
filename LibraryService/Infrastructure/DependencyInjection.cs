@@ -1,4 +1,5 @@
 using System.Reflection;
+using EventBus.Abstractions;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using LibraryService.Domain;
@@ -11,7 +12,7 @@ namespace LibraryService.Infrastructure
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static async Task<IServiceCollection> AddInfrastructureAsync(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DbConnectionString") ?? throw new InvalidOperationException("Connection string 'DbConnectionString' not found.");
 
@@ -24,6 +25,10 @@ namespace LibraryService.Infrastructure
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
             services.AddFluentValidationAutoValidation()
                 .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+            var eventBus = new EventBus.RabbitMq.EventBus("localhost", "LibraryExchange");
+                await eventBus.InitializeAsync();
+                services.AddSingleton<IEventBus>(eventBus);
 
             services.AddScoped<IBaseRepository<Book>, BookRepository>();
             services.AddScoped<IBaseRepository<BookExemplar>, BookExemplarRepository>();

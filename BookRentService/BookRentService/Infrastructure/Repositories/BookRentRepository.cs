@@ -54,7 +54,7 @@ namespace BookRentService.Infrastructure.Repositories
         {
             try
             {
-                return await _context.BookRents.Include(x => x.Renter).Include(x => x.BookExemplarRents).ToListAsync();
+                return await _context.BookRents.Include(x => x.Renter).Include(x => x.BookExemplarRents).Include(x=>x.RentStatus).ToListAsync();
             }
             catch (Exception e)
             {
@@ -68,7 +68,7 @@ namespace BookRentService.Infrastructure.Repositories
              try
             {
                 return await _context.BookRents.Include(x => x.Renter)
-                                        .Include(x => x.BookExemplarRents).Where(expression).ToListAsync();
+                                        .Include(x => x.BookExemplarRents).Include(x=>x.RentStatus).Where(expression).ToListAsync();
             }
             catch (Exception e)
             {
@@ -83,6 +83,7 @@ namespace BookRentService.Infrastructure.Repositories
             {
                 return await _context.BookRents.Include(x => x.Renter)
                                         .Include(x => x.BookExemplarRents)
+                                        .Include(x=>x.RentStatus)
                                         .FirstOrDefaultAsync(x => x.Id == Id);
             }
             catch (Exception e)
@@ -98,6 +99,7 @@ namespace BookRentService.Infrastructure.Repositories
             {
                 var query = _context.BookRents.Include(x => x.Renter)
                                         .Include(x => x.BookExemplarRents)
+                                        .Include(x=>x.RentStatus)
                                         .AsQueryable();
                 if (descending)
                     query = query.OrderByDescending(sortExpression);
@@ -123,6 +125,22 @@ namespace BookRentService.Infrastructure.Repositories
             {
                 Console.WriteLine("[BookRentRepository.UpdateAsync]: " + e.Message);
                 throw new DataBaseException("Ошибка при обновлении записи об аренде!");
+            }
+        }
+
+        public async Task DeleteRangeAsync(int[] Ids)
+        {
+            try
+            {
+                var bookRents = await _context.BookRents.Where(x=>Ids.Contains(x.Id)).ToListAsync();
+
+                _context.RemoveRange(bookRents);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[BookRentRepository.DeleteRangeAsync]: " + e.Message);
+                throw new DataBaseException("Ошибка при удалении записей об аренде!");
             }
         }
     }

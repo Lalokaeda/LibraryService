@@ -11,7 +11,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.Ы
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 
 await app.UseOcelot();

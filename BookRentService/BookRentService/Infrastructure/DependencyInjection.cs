@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using BookRentService.Application.Handlers;
+using BookRentService.Application.Interfaces;
+using BookRentService.Domain.Entities;
+using BookRentService.Domain.Interfaces;
 using BookRentService.Infrastructure.Messaging.Consumers;
+using BookRentService.Infrastructure.Repositories;
+using BookRentService.Infrastructure.Service;
 using EventBus.Abstractions;
 using EventBus.RabbitMq;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookRentService.Infrastructure
 {
     public static class DependencyInjection
     {
-        public static async Task<IServiceCollection> AddInfrastructureAsync(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DbConnectionString") ?? throw new InvalidOperationException("Connection string 'DbConnectionString' not found.");
 
@@ -28,11 +35,20 @@ namespace BookRentService.Infrastructure
             services.AddFluentValidationAutoValidation()
                 .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
                 
-            var eventBus = new EventBus.RabbitMq.EventBus("localhost", "LibraryExchange");
-                await eventBus.InitializeAsync();
-                services.AddSingleton<IEventBus>(eventBus);
+            services.AddSingleton<IEventBus>(provider =>
+            {
+                var eventBus = new EventBus.RabbitMq.EventBus("localhost", "LibraryExchange");
+                eventBus.InitializeAsync().GetAwaiter().GetResult(); 
+                return eventBus;
+            });
 
+            services.AddHttpClient<BookService>();
 
+            services.AddSingleton<BookDeletedEventConsumer>();
+            services.AddScoped<IRequestHandler<Application.Commands.DeleteRentByBookIdCommand, bool>, BookDeletedHandler>();
+            services.AddScoped<IBaseRepository<BookRent>, BookRentRepository>();
+            services.AddScoped<IBaseRepository<BookExemplarRent>, BookExemplarRentRepository>();
+            services.AddScoped<IBookService, BookService>();
 
             services.AddSwaggerGen(c =>
             {
@@ -40,8 +56,6 @@ namespace BookRentService.Infrastructure
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
-
-            services.AddTransient<BookDeletedEventConsumer>();
             return services;
         }
     }

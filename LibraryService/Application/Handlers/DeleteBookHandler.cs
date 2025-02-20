@@ -11,12 +11,10 @@ namespace LibraryService.Application.Handlers
     public class DeleteBookHandler : IRequestHandler<DeleteBookCommand, bool>
     {
         private readonly IBaseRepository<Book> _bookRepository;
-        private readonly IEventBus _eventBus;
 
-        public DeleteBookHandler(IBaseRepository<Book> bookRepository, IEventBus eventBus)
+        public DeleteBookHandler(IBaseRepository<Book> bookRepository)
         {
             _bookRepository=bookRepository;
-            _eventBus=eventBus;
         }
 
         public async Task<bool> Handle(DeleteBookCommand request, CancellationToken cancellationToken)
@@ -29,8 +27,6 @@ namespace LibraryService.Application.Handlers
             }
 
             await _bookRepository.DeleteAsync(book.Id);
-            var integrationEvent = new BookExemplarDeletedEvent(request.Id);
-            await _eventBus.PublishAsync(integrationEvent);
             return true;
         }
     }

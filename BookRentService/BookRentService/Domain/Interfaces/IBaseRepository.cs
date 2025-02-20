@@ -12,7 +12,8 @@ namespace BookRentService.Domain.Interfaces
         Task<IEnumerable<T>> GetAllAsync();
         Task AddAsync(T entity);
         Task UpdateAsync(T entity);
-        Task DeleteAsync(int Id); 
+        Task DeleteAsync(int Id);
+        Task DeleteRangeAsync(int[] Ids); 
         Task<IEnumerable<T>> GetByConditionAsync(Expression<Func<T, bool>> expression);
         Task<IEnumerable<T>> GetSortedAsync(Expression<Func<T, object>> sortExpression, bool descending = false);
     }

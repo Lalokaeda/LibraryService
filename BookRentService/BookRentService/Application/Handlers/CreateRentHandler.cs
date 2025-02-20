@@ -30,7 +30,7 @@ namespace BookRentService.Application.Handlers
             
             if (books==null || books.Count==0)
             {
-                throw new NotFoundException($"Книги {request.RentDto.BookExemplarsId.ToString} не найдены");
+                throw new NotFoundException($"Книги не найдены");
             }
 
 
@@ -38,8 +38,11 @@ namespace BookRentService.Application.Handlers
                 RenterId=request.RentDto.RenterId,
                 StartDate=request.RentDto.StartDate,
                 EndDate=request.RentDto.EndDate,
-                RentStatusId=request.RentDto.RentStatusId
+                RentStatusId=request.RentDto.RentStatusId,
+                BookExemplarRents = new List<BookExemplarRent>()
             };
+
+            await _bookRentRepository.AddAsync(rent);
 
             foreach (var bookExemplarId in request.RentDto.BookExemplarsId)
             {
@@ -48,7 +51,7 @@ namespace BookRentService.Application.Handlers
                     BookExemplarId=bookExemplarId
                 });
             }
-            await _bookRentRepository.AddAsync(rent);
+            await _bookRentRepository.UpdateAsync(rent);
             return rent.Id;
         }
     }
