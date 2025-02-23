@@ -51,5 +51,17 @@
         <member name="M:BookRentService.Migrations.CreateDataBase.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:BookRentService.Migrations.CreateFines">
+            <inheritdoc />
+        </member>
+        <member name="M:BookRentService.Migrations.CreateFines.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookRentService.Migrations.CreateFines.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookRentService.Migrations.CreateFines.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

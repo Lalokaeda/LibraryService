@@ -38,7 +38,7 @@ namespace RentRentService.API.Controllers
             catch (Exception e)
             {
                 Console.WriteLine("[RentController.GetRents]: " + e.Message);
-                return StatusCode(500, new { messge = "Неизвестная ошибка!" });
+                return StatusCode(500, new { message = "Неизвестная ошибка!" });
             }
         }
 
@@ -63,7 +63,7 @@ namespace RentRentService.API.Controllers
             catch (Exception e)
             {
                 Console.WriteLine("[RentController.GetRentById]: " + e.Message);
-                return StatusCode(500, new { messge = "Неизвестная ошибка!" });
+                return StatusCode(500, new { message = "Неизвестная ошибка!" });
             }
         }
 
@@ -116,7 +116,7 @@ namespace RentRentService.API.Controllers
             catch (Exception e)
             {
                 Console.WriteLine("[RentController.UpdateRent]: " + e.Message);
-                return StatusCode(500, new { messge = "Неизвестная ошибка!" });
+                return StatusCode(500, new { message = "Неизвестная ошибка!" });
             }
         }
 
@@ -142,7 +142,7 @@ namespace RentRentService.API.Controllers
             catch (Exception e)
             {
                 Console.WriteLine("[RentController.DeleteRent]: " + e.Message);
-                return StatusCode(500, new { messge = "Неизвестная ошибка!" });
+                return StatusCode(500, new { message = "Неизвестная ошибка!" });
             }
         }
     }

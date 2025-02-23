@@ -19,6 +19,7 @@ namespace BookRentService.Infrastructure
         public DbSet<RentStatus> RentStatuses {get; set;}
         public DbSet<BookRent> BookRents {get; set;}
         public DbSet<BookExemplarRent> BookExemplarRents {get; set;}
+        public DbSet<Fine> Fines {get; set;}
 
          protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,6 +34,12 @@ namespace BookRentService.Infrastructure
                 .WithMany(e => e.BookExemplarRents)
                 .HasForeignKey(r => r.BookRentId)
                 .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Fine>()
+                .HasOne(f => f.BookRent)
+                .WithMany() 
+                .HasForeignKey(f => f.BookRentId)
                 .OnDelete(DeleteBehavior.Cascade);
            
             OnModelCreatingPartial(modelBuilder);

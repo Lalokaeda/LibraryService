@@ -27,18 +27,29 @@ namespace BookRentService.Application.Handlers
         public async Task<int> Handle(CreateRentCommand request, CancellationToken cancellationToken)
         {
             var books = await _bookService.GetBooksByIdsAsync(request.RentDto.BookExemplarsId);
-            
-            if (books==null || books.Count==0)
+
+            if (books == null || books.Count == 0)
             {
                 throw new NotFoundException($"Книги не найдены");
             }
 
+            var overlappingRents = await _bookRentRepository.GetByConditionAsync(
+                                                            x => x.BookExemplarRents.Any(be => request.RentDto.BookExemplarsId.Contains(be.BookExemplarId)) &&
+                                                            x.StartDate < request.RentDto.EndDate &&
+                                                            x.EndDate > request.RentDto.StartDate);
 
-            var rent = new BookRent{
-                RenterId=request.RentDto.RenterId,
-                StartDate=request.RentDto.StartDate,
-                EndDate=request.RentDto.EndDate,
-                RentStatusId=request.RentDto.RentStatusId,
+            if (overlappingRents!=null && overlappingRents.Count()!=0)
+            {
+                throw new ValidationException("Одна или несколько книг уже арендованы на выбранные даты.");
+            }
+
+
+            var rent = new BookRent
+            {
+                RenterId = request.RentDto.RenterId,
+                StartDate = request.RentDto.StartDate,
+                EndDate = request.RentDto.EndDate,
+                RentStatusId = request.RentDto.RentStatusId,
                 BookExemplarRents = new List<BookExemplarRent>()
             };
 
@@ -46,9 +57,10 @@ namespace BookRentService.Application.Handlers
 
             foreach (var bookExemplarId in request.RentDto.BookExemplarsId)
             {
-                rent.BookExemplarRents.Add(new BookExemplarRent{
-                    BookRentId=rent.Id,
-                    BookExemplarId=bookExemplarId
+                rent.BookExemplarRents.Add(new BookExemplarRent
+                {
+                    BookRentId = rent.Id,
+                    BookExemplarId = bookExemplarId
                 });
             }
             await _bookRentRepository.UpdateAsync(rent);

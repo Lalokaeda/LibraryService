@@ -38,16 +38,4 @@ await eventBusInstance.SubscribeAsync<BookExemplarDeletedEvent>(
     cancellationToken: new CancellationToken()
 );
 
-// using (var scope = app.Services.CreateScope()) 
-// {
-//     var consumer = scope.ServiceProvider.GetRequiredService<BookDeletedEventConsumer>();
-    
-//     await eventBusInstance.SubscribeAsync<BookExemplarDeletedEvent>(
-//         consumerTag: "book_rent_service",
-//         queueName: "book_rent_queue",
-//         handler: consumer.Handle,
-//         cancellationToken: new CancellationToken()
-//     );
-// }
-
 app.Run();

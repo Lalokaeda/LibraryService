@@ -7,6 +7,7 @@ using BookRentService.Application.Handlers;
 using BookRentService.Application.Interfaces;
 using BookRentService.Domain.Entities;
 using BookRentService.Domain.Interfaces;
+using BookRentService.Infrastructure.BackgroundJobs;
 using BookRentService.Infrastructure.Messaging.Consumers;
 using BookRentService.Infrastructure.Repositories;
 using BookRentService.Infrastructure.Service;
@@ -49,6 +50,9 @@ namespace BookRentService.Infrastructure
             services.AddScoped<IBaseRepository<BookRent>, BookRentRepository>();
             services.AddScoped<IBaseRepository<BookExemplarRent>, BookExemplarRentRepository>();
             services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IFineRepository, FineRepository>();
+            
+            services.AddHostedService<FineBackgroundService>();
 
             services.AddSwaggerGen(c =>
             {
