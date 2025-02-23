@@ -14,14 +14,10 @@ namespace BookRentService.Application.Handlers
     public class DeleteRentHandler : IRequestHandler<DeleteRentCommand, bool>
     {
         private readonly IBaseRepository<BookRent> _bookRentRepository;
-        private readonly IBaseRepository<BookExemplarRent> _bookExemplarRentRepository;
-        private readonly IBookService _bookService;
 
-        public DeleteRentHandler(IBaseRepository<BookRent> bookRentRepository, IBaseRepository<BookExemplarRent> bookExemplarRentRepository, IBookService bookService)
+        public DeleteRentHandler(IBaseRepository<BookRent> bookRentRepository)
         {
             _bookRentRepository=bookRentRepository;
-            _bookExemplarRentRepository=bookExemplarRentRepository;
-            _bookService=bookService;
         }
 
         public async Task<bool> Handle(DeleteRentCommand request, CancellationToken cancellationToken)

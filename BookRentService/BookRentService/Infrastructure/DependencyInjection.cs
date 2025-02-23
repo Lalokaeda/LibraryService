@@ -38,7 +38,7 @@ namespace BookRentService.Infrastructure
                 
             services.AddSingleton<IEventBus>(provider =>
             {
-                var eventBus = new EventBus.RabbitMq.EventBus("localhost", "LibraryExchange");
+                var eventBus = new EventBus.RabbitMq.EventBus("localhost", "LibraryExchange", 5673);
                 eventBus.InitializeAsync().GetAwaiter().GetResult(); 
                 return eventBus;
             });

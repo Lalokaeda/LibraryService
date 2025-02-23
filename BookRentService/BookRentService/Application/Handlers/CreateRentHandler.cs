@@ -14,13 +14,11 @@ namespace BookRentService.Application.Handlers
     public class CreateRentHandler : IRequestHandler<CreateRentCommand, int>
     {
         private readonly IBaseRepository<BookRent> _bookRentRepository;
-        private readonly IBaseRepository<BookExemplarRent> _bookExemplarRentRepository;
         private readonly IBookService _bookService;
 
-        public CreateRentHandler(IBaseRepository<BookRent> bookRentRepository, IBaseRepository<BookExemplarRent> bookExemplarRentRepository, IBookService bookService)
+        public CreateRentHandler(IBaseRepository<BookRent> bookRentRepository, IBookService bookService)
         {
             _bookRentRepository = bookRentRepository;
-            _bookExemplarRentRepository = bookExemplarRentRepository;
             _bookService = bookService;
         }
 

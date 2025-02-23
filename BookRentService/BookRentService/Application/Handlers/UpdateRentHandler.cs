@@ -14,14 +14,10 @@ namespace BookRentService.Application.Handlers
     public class UpdateRentHandler : IRequestHandler<UpdateRentCommand, bool>
     {
         private readonly IBaseRepository<BookRent> _bookRentRepository;
-        private readonly IBaseRepository<BookExemplarRent> _bookExemplarRentRepository;
-        private readonly IBookService _bookService;
-        public UpdateRentHandler(IBaseRepository<BookRent> bookRentRepository,
-                                IBaseRepository<BookExemplarRent> bookExemplarRentRepository, IBookService bookService)
+
+        public UpdateRentHandler(IBaseRepository<BookRent> bookRentRepository)
         {
             _bookRentRepository = bookRentRepository;
-            _bookService = bookService;
-            _bookExemplarRentRepository = bookExemplarRentRepository;
         }
 
         public async Task<bool> Handle(UpdateRentCommand request, CancellationToken cancellationToken)

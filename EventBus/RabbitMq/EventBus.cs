@@ -10,15 +10,17 @@ public class EventBus : IEventBus
 {
     private readonly string _hostname;
     private readonly string _exchangeName;
+    private readonly int _port;
     private readonly ConnectionFactory _factory;
     private IConnection _connection;
     private IChannel _channel;
 
-    public EventBus(string hostname, string exchangeName)
+    public EventBus(string hostname, string exchangeName, int port)
     {
         _hostname = hostname;
         _exchangeName = exchangeName;
-        _factory = new ConnectionFactory() { HostName = _hostname, Port = 5673 };
+        _port = port;
+        _factory = new ConnectionFactory() { HostName = _hostname, Port = _port };
     }
 
     public async Task InitializeAsync()

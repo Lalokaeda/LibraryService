@@ -26,7 +26,7 @@ namespace LibraryService.Infrastructure
             services.AddFluentValidationAutoValidation()
                 .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-            var eventBus = new EventBus.RabbitMq.EventBus("localhost", "LibraryExchange");
+            var eventBus = new EventBus.RabbitMq.EventBus("localhost", "LibraryExchange", 5673);
                 await eventBus.InitializeAsync();
                 services.AddSingleton<IEventBus>(eventBus);
 

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BookRentService</name>
+    </assembly>
+    <members>
+        <member name="M:RentRentService.API.Controllers.RentController.GetRents">
+            <summary>
+            Получить список всех аренд
+            </summary>
+            <returns>Список аренд</returns>
+        </member>
+        <member name="M:RentRentService.API.Controllers.RentController.GetRentById(System.Int32)">
+            <summary>
+            Получить аренду по ID
+            </summary>
+            <param name ="id">ID аренды</param>
+            <returns>Данные аренды</returns>
+        </member>
+        <member name="M:RentRentService.API.Controllers.RentController.CreateRent(BookRentService.Application.Commands.CreateRentCommand)">
+            <summary>
+            Создать аренду
+            </summary>
+            <param name ="command">Данные для создания аренды</param>
+            <returns>Id созданной аренды</returns>
+        </member>
+        <member name="M:RentRentService.API.Controllers.RentController.UpdateRent(System.Int32,BookRentService.Application.Commands.UpdateRentCommand)">
+            <summary>
+            Обновить аренду
+            </summary>
+            <param name ="id">ID аренды</param>
+            <param name ="command">Данные для обновления аренды</param>
+            <returns>Результат</returns>
+        </member>
+        <member name="M:RentRentService.API.Controllers.RentController.DeleteRent(System.Int32)">
+            <summary>
+            Удалить аренду
+            </summary>
+            <param name ="id">ID аренды</param>
+            <returns>Результат</returns>
+        </member>
+        <member name="T:BookRentService.Migrations.CreateDataBase">
+            <inheritdoc />
+        </member>
+        <member name="M:BookRentService.Migrations.CreateDataBase.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookRentService.Migrations.CreateDataBase.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookRentService.Migrations.CreateDataBase.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BookRentService.Migrations.CreateFines">
+            <inheritdoc />
+        </member>
+        <member name="M:BookRentService.Migrations.CreateFines.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookRentService.Migrations.CreateFines.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookRentService.Migrations.CreateFines.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
